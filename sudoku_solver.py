@@ -1,6 +1,11 @@
+import copy
 from typing import List
 
 Sudoku = List[List[int]]
+
+
+class SudokuError(Exception):
+    """Unable to solve the puzzle."""
 
 
 def sudoku_solved(puzzle: Sudoku) -> bool:
@@ -10,4 +15,12 @@ def sudoku_solved(puzzle: Sudoku) -> bool:
 def sudoku(puzzle: Sudoku) -> Sudoku:
     """return the solved puzzle as a 2d array of 9 x 9"""
     assert len(puzzle) == len(puzzle[0]) == 9
+    puzzle = copy.deepcopy(puzzle)
+
+    while not sudoku_solved(puzzle):
+        # try rows
+        # try columns
+        # try little squares
+        raise SudokuError()
+
     return puzzle
