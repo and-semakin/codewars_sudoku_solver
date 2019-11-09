@@ -81,10 +81,6 @@ class TestUnit:
     ) -> None:
         assert get_square(puzzle, square_number) == expected_square
 
-    def test_get_square_raises_if_puzzle_can_not_be_split_to_squares(self) -> None:
-        with pytest.raises(ValueError):
-            get_square([[1], [2], [3]], 1)
-
     @pytest.mark.parametrize(
         ("puzzle", "row", "value", "result"),
         [
