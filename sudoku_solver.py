@@ -37,6 +37,18 @@ def get_square(puzzle: Sudoku, i: int) -> List[int]:
     return square
 
 
+def can_be_placed_in_row(puzzle: Sudoku, row: int, value: int) -> bool:
+    return value not in get_row(puzzle, row)
+
+
+def can_be_placed_in_column(puzzle: Sudoku, column: int, value: int) -> bool:
+    return value not in get_column(puzzle, column)
+
+
+def can_be_placed_in_square(puzzle: Sudoku, square: int, value: int) -> bool:
+    return value not in get_square(puzzle, square)
+
+
 def sudoku(puzzle: Sudoku) -> Sudoku:
     """return the solved puzzle as a 2d array of 9 x 9"""
     assert len(puzzle) == len(puzzle[0]) == 9
