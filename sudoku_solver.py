@@ -92,9 +92,8 @@ def sudoku(puzzle: Sudoku) -> Sudoku:
                 columns_square = [
                     can_be_placed_in_square(
                         puzzle,
-                        (
-                            row_number // little_square_size
-                            + column_number // little_square_size
+                        row_col_to_square(
+                            little_square_size, row_number, column_number
                         ),
                         value,
                     )
@@ -125,9 +124,8 @@ def sudoku(puzzle: Sudoku) -> Sudoku:
                         and can_be_placed_in_row(puzzle, row_number, value)
                         and can_be_placed_in_square(
                             puzzle,
-                            (
-                                row_number // little_square_size
-                                + column_number // little_square_size
+                            row_col_to_square(
+                                little_square_size, row_number, column_number
                             ),
                             value,
                         )
@@ -158,9 +156,12 @@ def sudoku(puzzle: Sudoku) -> Sudoku:
                         and can_be_placed_in_column(puzzle, column_number, value)
                     )
 
-                if rows.count(True) == 1:
-                    r = rows.index(True)
-                    puzzle[r][column_number] = value
+                if positions.count(True) == 1:
+                    p = positions.index(True)
+                    row_number, column_number = square_to_row_col(
+                        little_square_size, square_number, p
+                    )
+                    puzzle[row_number][column_number] = value
                     making_progress = True
 
         if not making_progress:
